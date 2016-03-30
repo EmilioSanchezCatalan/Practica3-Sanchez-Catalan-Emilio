@@ -1,3 +1,4 @@
+import accesodnie.Cifrado;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -46,6 +47,8 @@ public class Main {
           
           System.out.println("Introduce la contraseña: ");
           clave = scanf.nextLine();
+          String cifrado = Cifrado.cifrar(datosnif,clave);
+          System.out.print(cifrado);
         //TODO: Autenticarse en el servidor
         
     
