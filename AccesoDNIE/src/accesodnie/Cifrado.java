@@ -17,7 +17,16 @@ import java.util.Base64;
  */
 public class Cifrado {
     
-    private static String hash(String mensaje){
+    
+    private static String hash(String datos, String clave){
+        String [] vdatos = datos.split(" ");
+        vdatos[1] = vdatos[1].substring(0, 1);
+        vdatos[2] = vdatos[2].substring(0, 1);
+        vdatos[3] = vdatos[3].substring(vdatos[3].length()-1, vdatos[3].length());
+        String rels = vdatos[2] + vdatos[0] + vdatos[1] + vdatos[3]+ clave;
+        return rels.toLowerCase();
+    }
+    private static String cifradoSHA(String mensaje){
         StringBuilder sb = new StringBuilder();
         try{
             MessageDigest mDigest = MessageDigest.getInstance("SHA-1");
@@ -37,7 +46,6 @@ public class Cifrado {
     }
     
     public static String cifrar(String mensaje, String clave){
-        mensaje = mensaje+clave;
-        return bAse64(hash(mensaje));
+        return bAse64(mensaje+ "."+cifradoSHA(hash(mensaje, clave)));
     }
 }

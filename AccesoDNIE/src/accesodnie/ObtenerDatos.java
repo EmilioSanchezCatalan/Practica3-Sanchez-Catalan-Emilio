@@ -1,17 +1,15 @@
+package accesodnie;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.smartcardio.*;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
+
 
 /**
  * La clase ObtenerDatos implementa cuatro métodos públicos que permiten obtener

@@ -1,11 +1,12 @@
-import accesodnie.Cifrado;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+package accesodnie;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Scanner;
 
 /*
@@ -26,7 +27,7 @@ public class Main {
      */
     public static void main(String[] args) throws Exception{
         Scanner scanf = new Scanner(System.in);
-        String clave;
+        String clave, res = "";
         /*ByteArrayInputStream bais=null;
        //read("cert.cer");
        
@@ -41,17 +42,32 @@ public class Main {
         //TODO: Obtener los datos del DNIe
         ObtenerDatos od = new ObtenerDatos();
         //String datosnif = od.oBtenerDatos();
-          String datosnif = "esanchezc26052698t";
+          String datosnif = "Sanchez Catalan, Emilio 26052698T";
           
           
           
-          System.out.println("Introduce la contraseña: ");
-          clave = scanf.nextLine();
-          String cifrado = Cifrado.cifrar(datosnif,clave);
-          System.out.print(cifrado);
+        System.out.println("Introduce la contraseña: ");
+        clave = scanf.nextLine();
+        String cifrado = Cifrado.cifrar(datosnif,clave);
         //TODO: Autenticarse en el servidor
-        
-    
+        try{
+            URL url = new URL("http://localhost/dnie/autenticamac.php?datos="+cifrado);
+            URLConnection conexion = url.openConnection();
+            conexion.connect();
+            InputStream is = conexion.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            char[] buffer = new char[1000];
+            int leido;
+            while ((leido = br.read(buffer)) > 0) {
+                res = res + new String(buffer, 0, leido);
+            }
+            res = res.substring(res.indexOf("<h4>"), res.indexOf("</h4>")).substring(4);
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        System.out.println(res);
     }
 
 }
