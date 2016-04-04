@@ -48,7 +48,7 @@ public class Main {
           
         System.out.println("Introduce la contraseña: ");
         clave = scanf.nextLine();
-        String cifrado = Cifrado.cifrar(datosnif,clave);
+        String cifrado = Cifrado.cifrar(datosnif,datosnif,clave);
         //TODO: Autenticarse en el servidor
         try{
             URL url = new URL("http://localhost/dnie/autenticamac.php?datos="+cifrado);
@@ -61,7 +61,6 @@ public class Main {
             while ((leido = br.read(buffer)) > 0) {
                 res = res + new String(buffer, 0, leido);
             }
-            res = res.substring(res.indexOf("<h4>"), res.indexOf("</h4>")).substring(4);
         }catch(MalformedURLException e){
             e.printStackTrace();
         }catch(IOException e){

@@ -45,7 +45,7 @@ public class Cifrado {
         return encoder.encodeToString(codehas.getBytes(StandardCharsets.UTF_8));
     }
     
-    public static String cifrar(String mensaje, String clave){
-        return bAse64(mensaje+ "."+cifradoSHA(hash(mensaje, clave)));
+    public static String cifrar(String mensaje, String datos, String clave){
+        return bAse64(mensaje+ "."+cifradoSHA(hash(datos, clave)));
     }
 }
