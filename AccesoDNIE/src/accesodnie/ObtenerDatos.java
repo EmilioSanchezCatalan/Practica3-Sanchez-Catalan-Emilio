@@ -112,19 +112,10 @@ public class ObtenerDatos {
                 for (int z = 0; z < 9; z++) {
                     r2[z] = datos[109 + z];
                 }
-                completo = tratamientoDatos(new String(r1), new String (r2));
-                completo = completo.toLowerCase();
+                completo = new String(r1)+ " " + new String(r2);
             }
         }
         return completo;
-    }
-    private String tratamientoDatos(String nombre, String dni){     
-        String datos_tratados;
-        String [] lNombre = nombre.split(" ");
-        lNombre[1] = lNombre[1].substring(0, 1);
-        lNombre[2] = lNombre[2].substring(0, 1);
-        datos_tratados = lNombre[2] + lNombre[0] + lNombre[1] + dni;
-        return datos_tratados;
     }
    
 

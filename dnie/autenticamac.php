@@ -35,6 +35,6 @@ if($hashg == $hashr){
     echo "Bienvenido " . $mensaje;
 }
 else{
-    echo "Error de autenticacion No se encuentra a ". $mensaje . "o los datos de DNI y clave son incorrectos";  
+    echo "Error de autenticacion No se encuentra al usuario o los datos de DNI y clave son incorrectos";  
 }
 ?>

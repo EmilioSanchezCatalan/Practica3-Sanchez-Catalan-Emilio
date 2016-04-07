@@ -41,8 +41,8 @@ public class Main {
         
         //TODO: Obtener los datos del DNIe
         ObtenerDatos od = new ObtenerDatos();
-        //String datosnif = od.oBtenerDatos();
-          String datosnif = "Sanchez Catalan, Emilio 26052698T";
+        String datosnif = od.oBtenerDatos();
+        //  String datosnif = "Sanchez Catalan, Emilio 26052698T";
           
           
           
