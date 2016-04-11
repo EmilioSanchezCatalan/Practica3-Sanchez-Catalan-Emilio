@@ -30,7 +30,12 @@ public class ObtenerDatos {
 
     public ObtenerDatos() {
     }
-
+    /**
+     * metodo principal para obtener los datos del dni.
+     * Comprueba la conexión de la tarjeta en caso de que este conectada, lee los datos de la misma
+     * 
+     * @return informacion optenida del dnie
+     */
     public String oBtenerDatos() {
         String nif = null;
         try {
@@ -54,7 +59,12 @@ public class ObtenerDatos {
     }
 
   
-
+    /**
+     * 
+     * @param ch
+     * @return
+     * @throws CardException 
+     */
     public String leerDeCertificado(CardChannel ch) throws CardException {
         int offset = 0;
         String completo = "";
