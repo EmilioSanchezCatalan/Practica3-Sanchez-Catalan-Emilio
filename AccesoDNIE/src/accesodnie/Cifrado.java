@@ -13,6 +13,7 @@ import java.util.Base64;
  */
 public class Cifrado {
     
+    private String dni, user;
     /**
      * 
      * @param datos variables en la cual se manipularan para hacer el resumen. Formato var1 var2 var3 var4
@@ -66,4 +67,16 @@ public class Cifrado {
     public static String cifrar(String mensaje, String datos, String clave){
         return bAse64(mensaje+ "."+cifradoSHA(hash(datos, clave)));
     }
+    public void sinCifrar(String datos){
+        datos = datos.toLowerCase();
+        String [] vars = datos.split(" ");
+        user = vars[0] + "%20" + vars[1] + "%20" + vars[2];
+        dni = vars[3];
+    }
+    public String getDni() {
+        return dni;
+    }
+    public String getUser() {
+        return user;
+    }   
 }

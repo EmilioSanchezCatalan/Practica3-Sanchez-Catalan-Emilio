@@ -24,7 +24,7 @@ public class Conexionhttp {
      * @param datos datos que se quieren enviar al servidor
      * @return devuelve el resultado de laconexion
      */
-    public static String oPen(String datos){
+    public static String oPens(String datos){
         String res = "";
         try{
             URL url = new URL("http://localhost/dnie/autenticamac.php?datos="+datos);
@@ -42,6 +42,27 @@ public class Conexionhttp {
         }catch(IOException e){
             e.printStackTrace();
         }
+        return res;
+    }
+    public static String oPen(String user,String dni, String pass){
+        String res = "";
+        try{
+            URL url = new URL("http://localhost/dnie/autentica.php?user="+user+"&dni="+dni+"&password="+pass);
+            URLConnection conexion = url.openConnection();
+            conexion.connect();
+            InputStream is = conexion.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            char[] buffer = new char[1000];
+            int leido;
+            while ((leido = br.read(buffer)) > 0) {
+                res = res + new String(buffer, 0, leido);
+            }
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        res = res.substring(res.indexOf("<h4>")+4, res.indexOf("</h4>"));
         return res;
     }
 }

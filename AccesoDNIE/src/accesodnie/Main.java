@@ -13,18 +13,34 @@ public class Main {
      */
     public static void main(String[] args) throws Exception{
         Scanner scanf = new Scanner(System.in);
-        String clave;
+        String clave, res="";
+        int op;
         
         //Obtener los datos del DNIe
         ObtenerDatos od = new ObtenerDatos();
         String datosnif = od.oBtenerDatos();          
           
-          
+        System.out.println("------------Menu------------");
+        System.out.println("1. Sin autentificacion");
+        System.out.println("2. Con autentificacion");
+        System.out.print("?.> ");
+        op = scanf.nextInt();
         System.out.println("Introduce la contraseña: ");
+        scanf.nextLine();
         clave = scanf.nextLine();
-        String cifrado = Cifrado.cifrar(datosnif,datosnif,clave);
+        switch(op){
+            case 1:
+                Cifrado c = new Cifrado();
+                c.sinCifrar(datosnif);
+                res = Conexionhttp.oPen(c.getUser(), c.getDni(), clave);
+                break;
+            case 2:
+                String cifrado = Cifrado.cifrar(datosnif,datosnif,clave);
+                res = Conexionhttp.oPens(cifrado);
+                break;
+        }
         //Autenticarse en el servidor
-        System.out.println(Conexionhttp.oPen(cifrado));
+        System.out.println(res);
     }
 
 }
